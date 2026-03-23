@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yotam Katzur — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #080a0d;
+    --bg2:     #0f1115;
+    --border:  rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text:    #eaeae4;
+    --text2:   #888880;
+    --text3:   #3e3e3a;
+    --gold:    #e8c547;
+    --gold-dim:rgba(232,197,71,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: 58px; padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(8,10,13,0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 17px; letter-spacing: -0.02em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text2); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-contact {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    border: 1px solid rgba(232,197,71,0.35);
+    padding: 7px 18px; border-radius: 3px;
+    transition: background 0.2s;
+  }
+  .nav-contact:hover { background: var(--gold-dim); }
+
+  /* ── HERO ────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 58px 48px 64px;
+  }
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: clamp(56px, 9vw, 128px);
+    line-height: 0.9; letter-spacing: -0.04em; text-transform: uppercase;
+    margin-bottom: 56px;
+  }
+  h1 em { font-style: normal; color: var(--gold); }
+
+  /* scroll hint */
+  .scroll-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text3); display: flex; align-items: center; gap: 12px;
+  }
+  .scroll-hint::after { content:''; display:block; width:40px; height:1px; background:var(--text3); }
+
+  /* ── SECTION ─────────────────────────────── */
+  .section {
+    padding: 80px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex; align-items: baseline; gap: 20px;
+    margin-bottom: 48px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em;
+    color: var(--text3); flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: clamp(28px, 4vw, 52px);
+    letter-spacing: -0.03em; text-transform: uppercase;
+    color: var(--text);
+  }
+  .section-rule {
+    flex: 1; height: 1px; background: var(--border); margin-bottom: 4px;
+  }
+
+  /* ── VIDEO GRID ──────────────────────────── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .video-item { display: flex; flex-direction: column; gap: 12px; }
+  .video-wrap {
+    position: relative; width: 100%; padding-top: 56.25%;
+    background: var(--bg2); border: 1px solid var(--border);
+    overflow: hidden; border-radius: 2px;
+  }
+  .video-wrap iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border: none;
+  }
+  .video-meta {
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  .video-idx {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.12em; color: var(--text3);
+    flex-shrink: 0;
+  }
+  .video-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 400; color: var(--text2);
+    line-height: 1.4;
+  }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer {
+    padding: 28px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .foot-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--text3);
+  }
+  .foot-email {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 800px) {
+    nav { padding: 0 24px; }
+    .nav-links { gap: 20px; }
+    .hero, .section { padding-left: 24px; padding-right: 24px; }
+    .video-grid { grid-template-columns: 1fr; gap: 24px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+  }
+  @media (max-width: 540px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">YK<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#editor">Editor</a></li>
+    <li><a href="#music-videos">Music Videos</a></li>
+    <li><a href="#productions">Productions</a></li>
+    <li><a href="#tech">Tech & Brand</a></li>
+  </ul>
+  <a href="mailto:yotam@yotamkatzur.me" class="nav-contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <p class="eyebrow">Content Strategist · Video Director · Editor · Tel Aviv</p>
+  <h1>Yotam<br><em>Katzur</em></h1>
+  <p class="scroll-hint">Selected Work</p>
+</section>
+
+<!-- EDITOR -->
+<section class="section" id="editor">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Editor</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="video-grid">
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/LMC0Vef3V98?rel=0&modestbranding=1"
+          title="The Children of October 7" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">01</span>
+        <span class="video-title">The Children of October 7</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/fY8aF1YCumQ?rel=0&modestbranding=1"
+          title="ספר המדבר" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">02</span>
+        <span class="video-title">ספר המדבר</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/Cy5eK3_sR-Y?rel=0&modestbranding=1"
+          title="רחל וסבולה — זוגות" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">03</span>
+        <span class="video-title">רחל וסבולה — זוגות</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/H55TwTqBgM8?rel=0&modestbranding=1"
+          title="לכדור הארץ — איש הבדלים" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">04</span>
+        <span class="video-title">לכדור הארץ — איש הבדלים</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/eo2nutnazBQ?rel=0&modestbranding=1"
+          title="ויצאה בפרויקט הנצחה — קול התור" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">05</span>
+        <span class="video-title">ויצאה בפרויקט הנצחה — קול התור</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/15kvpkz5-eg?rel=0&modestbranding=1"
+          title="כשיא לידות האמבולנס — דוקותיים" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">06</span>
+        <span class="video-title">כשיא לידות האמבולנס — דוקותיים</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MUSIC VIDEOS -->
+<section class="section" id="music-videos">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Music Videos</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="video-grid">
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/Lm08Fs7tPyA?rel=0&modestbranding=1"
+          title="בניה ברבי — קולות" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">01</span>
+        <span class="video-title">בניה ברבי — קולות</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/W6AliNmDDUY?rel=0&modestbranding=1"
+          title="כוח עליון — גדי רונן" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">02</span>
+        <span class="video-title">כוח עליון — גדי רונן</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/-iWMj3PYlYE?rel=0&modestbranding=1"
+          title="אופיר מרטין — מה שכולם עושים" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">03</span>
+        <span class="video-title">אופיר מרטין — מה שכולם עושים</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/B4gf8RKL6io?rel=0&modestbranding=1"
+          title="Known Shaz — Know You" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">04</span>
+        <span class="video-title">Known Shaz — Know You</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRODUCTIONS -->
+<section class="section" id="productions">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Productions</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="video-grid">
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/tbKdIE9zbRQ?rel=0&modestbranding=1"
+          title="Promo Film 01" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">01</span>
+        <span class="video-title">Promo Film 01</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/4vQ1w8r2PRo?rel=0&modestbranding=1"
+          title="Promo Film 02" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">02</span>
+        <span class="video-title">Promo Film 02</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/h2-OyOdyLro?rel=0&modestbranding=1"
+          title="Promo Film 03" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">03</span>
+        <span class="video-title">Promo Film 03</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TECH & BRAND -->
+<section class="section" id="tech">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Tech & Brand</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="video-grid">
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/sjG6bChhoQE?rel=0&modestbranding=1"
+          title="Tech & Brand 01" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">01</span>
+        <span class="video-title">Tech & Brand 01</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://player.vimeo.com/video/995172301?badge=0&autopause=0&player_id=0&app_id=58479"
+          title="Tech & Brand 02" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">02</span>
+        <span class="video-title">Tech & Brand 02</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://player.vimeo.com/video/1176315860?badge=0&autopause=0&player_id=0&app_id=58479"
+          title="Tech & Brand 03" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">03</span>
+        <span class="video-title">Tech & Brand 03</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/bzFrNfqH-gk?rel=0&modestbranding=1"
+          title="Tech & Brand 04" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">04</span>
+        <span class="video-title">Tech & Brand 04</span>
+      </div>
+    </div>
+
+    <div class="video-item">
+      <div class="video-wrap">
+        <iframe src="https://player.vimeo.com/video/1176317781?badge=0&autopause=0&player_id=0&app_id=58479"
+          title="Tech & Brand 05" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-meta">
+        <span class="video-idx">05</span>
+        <span class="video-title">Tech & Brand 05</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-copy">© 2025 Yotam Katzur · Tel Aviv</span>
+  <a href="mailto:yotam@yotamkatzur.me" class="foot-email">yotam@yotamkatzur.me</a>
+</footer>
+
+</body>
+</html>
